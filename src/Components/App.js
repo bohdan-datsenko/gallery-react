@@ -10,6 +10,14 @@ const styles = {
     'hover:bg-blue-600 active:ring-2 ring-blue-400',
 };
 
+const NotFound = () => {
+  return (
+    <div className='h-[70vh] flex justify-center items-center'>
+      <h2 className='text-5xl'>No images found</h2>
+    </div>
+  );
+}
+
 function App() {
   const [images, setImages] = useState([]);
 
@@ -28,15 +36,18 @@ function App() {
   return (
     <div className='w-full min-h-screen p-2 pt-10 bg-gray-50'>
       <div className='container mx-auto'>
-          <Search onSearch={handleSearch} />
+        <Search onSearch={handleSearch} />
+        { images.length === 0 ?
+          <NotFound /> :
           <div className={styles.galleryGrid}>
-              {images && images.map(image => {
-                  return (
-                      <ImageCard key={image.id} id={image.id} imageUrl={image.largeImageURL} views={image.views}
-                                 downloads={image.downloads} likes={image.likes} tags={image.tags.split(', ')} onSearch={handleTagSearch} />
-                  );
-              })}
+            {images && images.map(image => {
+              return (
+                <ImageCard key={image.id} id={image.id} imageUrl={image.largeImageURL} views={image.views}
+                           downloads={image.downloads} likes={image.likes} tags={image.tags.split(', ')} onSearch={handleTagSearch} />
+              );
+            })}
           </div>
+        }
       </div>
     </div>
   );
