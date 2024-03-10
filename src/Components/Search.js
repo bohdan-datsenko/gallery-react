@@ -8,11 +8,17 @@ const styles = {
 
 export const Search = ({onSearch}) => {
   const [term, setTerm] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(term);
+  }
+
   return (
     <div className='max-w-full md:max-w-screen-sm mx-auto mb-8'>
       <form className='grid grid-cols-3 gap-2 rounded-md' action='#'>
         <input onChange={(e) => setTerm(e.target.value)} type="text" placeholder='cute-cats' className={styles.searchInput} />
-        <button onClick={() => onSearch(term)} type='submit' className={styles.searchButton}>Search</button>
+        <button onClick={handleSearch} type='submit' className={styles.searchButton}>Search</button>
       </form>
     </div>
   );
