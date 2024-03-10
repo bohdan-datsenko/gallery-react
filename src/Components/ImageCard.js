@@ -19,12 +19,12 @@ const Loading = () => {
   );
 }
 
-export const ImageCard = ({imageUrl, views, downloads, likes, tags, onSearch}) => {
+export const ImageCard = ({id, imageUrl, views, downloads, likes, tags, onSearch}) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const tagElements = tags.map((tag, i) => {
+  const tagElements = tags.map((tag) => {
         return (
-            <button key={i} className={buttonStyles} onClick={() => onSearch(tag)}>
+            <button key={id + tag} className={buttonStyles} onClick={() => onSearch(tag)}>
                 #{tag}
             </button>
         );
